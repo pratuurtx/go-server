@@ -43,7 +43,7 @@ func main() {
 
 // Handler for the root route
 func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+	return c.String(http.StatusOK, "Hello, World! from dev")
 }
 
 // Handler to get all users
@@ -78,7 +78,7 @@ func createUser(c echo.Context) error {
 // Handler to update an existing user
 func updateUser(c echo.Context) error {
 	id := c.Param("id")
-	
+
 	// Find the user
 	for i := range users {
 		if strconv.Itoa(users[i].ID) == id {
@@ -86,7 +86,7 @@ func updateUser(c echo.Context) error {
 			if err := c.Bind(updatedUser); err != nil {
 				return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 			}
-			
+
 			// Update user fields
 			users[i].Name = updatedUser.Name
 			users[i].Email = updatedUser.Email
